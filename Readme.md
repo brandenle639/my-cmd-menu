@@ -7,6 +7,3 @@ Read the "Administrative Guide.txt" on how to install as it can be complex.
 
 # To Run:
 Have the user run "customcmd.bat" or make it a startup application
-
-# Notes
-[General Notes]
