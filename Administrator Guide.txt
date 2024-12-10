@@ -1,0 +1,87 @@
+My Custom CMD Administration Guide
+
+Purpose of My Custom CMD
+
+The purpose of My Custom CMD is to give a nice basic list of shortcut commands through the Windows Command Prompt.
+Since it plugins into the Command Prompt you can also run the terminal commands like normal.
+
+Installation
+
+***Warning: All custom add-ons hard coded in to the batch file installed on the user's computer will be wiped out***
+
+    1. Download "mycustomcmdinstaller.vbs"
+
+    2. If need special links:
+
+        a. Create Folder "ccaddons" in the same folder as "mycustomcmdinstaller.vbs"
+
+        b. Download or make text file with proper information to "ccaddons"
+
+            i. See "How to Make Special Link Files" to create the text file(s)
+
+    3. Run the "mycustomcmdinstaller.vbs" script
+
+        a. The main batch file will install to "C:\Users\[USER NAME]\AppData\Roaming\mycustomcmd"
+
+        b. The installer will also create a vbscript "dosfullscreen.vbs" in the folder "C:\Users\[USER NAME]\AppData\Roaming\mycustomcmd\customcmdaddons"
+
+        c. A shortcut will be made in the user's start menu and on the user's desktop
+
+    4. During the process a backup folder ("mycustomcmd-installer") will be created in the user's document folder and all related files for the installer will be stored there in case the application has to be reinstalled.
+
+How to Make Special Link Files
+
+The special link files should be stored under the "ccaddons" folder where the "mycustomcmdinstaller.vbs" is located.
+The special link files are the commands that will be imported by the installation file to build the user's specific usage.
+To make the file:
+	Command|Description|Command|Command Arguments
+Example:
+	program1|program1 - used to run program1|c:\progam1.exe
+program2|program2 - used to run program2|c:\progam2.exe|-tester
+website1|website1 - goes to website1|https://website1.test/
+
+Making fixes in the "mycustomcmd.bat" for All
+
+***Can use the "mycustomcmd-developer.zip" from the repo for editing***
+
+    1. The installation script can be run to create a generic batch with no specific variables when there is no "ccaddons" folder.
+
+    2. ":: VBS Break" line is used by the "makevariablelines.vbs" to create the proper sections in the batch file.
+
+        a. ":: VBS Break" lines can be added to the custom batch file to create specific section breaks used in the installer folder.
+
+    3. Once the fixes are made to the batch file, run the "makevariablelines.vbs"
+
+        a. Make sure "customcmdaddons\dosfullscreen.vbs" exists in the folder when running the "makevariablelines.vbs" as it will create a new variable line for it for the installation script
+
+        b. The "makevariablelines.vbs" will create a "Vars.txt" with the proper variables to be used in the "mycustomcmdinstaller.vbs"
+
+        c. File Structure (All in the Same Folder):
+
+            i. customcmdaddons\dosfullscreen.vbs
+            ii. customcmd.bat
+            iii. makevariablelines.vbs
+            iv. mycustomcmdinstaller.vbs
+
+    4. Copy the proper lines from the "Vars.txt" in to the "mycustomcmdinstaller.vbs" replacing the existing lines
+
+Can copy the new the installation script file to the user's computer and can re-run it and will install the new update(s) from scratch using the same custom text files.
+***Warning: All custom add-ons hard coded in to the batch file installed on the user's computer will be wiped out***
+
+Making fixes in the "mycustomcmd.bat" for Specific User
+
+    1. Under the ":begin" section you can add the specific if statement
+        a. Example 1: 
+            i. if "%incomm%"=="notes" set runthis="C:\Program Files (x86)\Microsoft Office\Office16\ONENOTE.EXE"
+        b. Example 2:
+            i. if "%incomm%"=="notes" set runthis="C:\Program Files (x86)\Microsoft Office\Office16\ONENOTE.EXE" "[ARGUMENTS]"
+
+    2. Under the ":listincomms" section is where you add the menu items and description
+        a. Example:
+            i. echo 	notes - Opens Microsoft Access
+
+Known Issues
+
+    1. Some Web Site URLs will crash the program if hard coded. The best way to fix this is to use URL shortcuts and store them in the "customcmdaddons" folder. Then put the URI to the URL shortcut in the path bat file or special link file.
+        a. Example (special link file):
+            i. webiste1|website1 - website1| C:\Users\[USER NAME]\AppData\Roaming\mycustomcmd\customcmdaddons \website1.url

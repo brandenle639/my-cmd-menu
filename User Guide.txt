@@ -1,0 +1,8 @@
+My Custom CMD User Guide
+
+How to use it
+
+You can run custom commands that have been loaded in program for faster access of files, programs, etc. Also, since it is built upon batch it can still run batch commands.
+	Example: If you run the command "listincomms" it will print out the menu of built in commands for this program
+* Some batch commands don't work well in the program. To fix it used the command "cmd" to drop into the windows batch terminal and "exit" to go back in to the program.
+To find the previous commands you have executed use the up and down arrows.

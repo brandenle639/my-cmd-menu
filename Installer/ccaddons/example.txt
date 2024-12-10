@@ -1,0 +1,2 @@
+google|google - search engine|https://google.com
+yahoo|yahoo - search engine|https://yahoo.com
